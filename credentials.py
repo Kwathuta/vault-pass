@@ -42,3 +42,14 @@ class Credentials:
         for credential in cls.credentials_list:
             if credential.site_name == site_name:
                 return credential
+
+    @classmethod
+    def list_credentials(cls):
+        """
+        This method takes in the credentials_list and returns the credentials array
+        Args:
+            credentials_list: list to display
+        Returns:
+            credentials_list array
+        """
+        return cls.credentials_list
