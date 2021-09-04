@@ -5,7 +5,7 @@ class User:
 
     user_list = []
 
-    def __init__(self, first_name, sur_name, email, password):
+    def __init__(self, first_name, sur_name, user_name, email, password):
 
         """
         __init__ method to define properties for object User
@@ -18,6 +18,7 @@ class User:
 
         self.first_name = first_name
         self.sur_name = sur_name
+        self.user_name = user_name
         self.email = email
         self.password = password
 
@@ -32,3 +33,12 @@ class User:
         delete_user removes User objects from user_list
         """
         User.user_list.remove(self)
+
+    @classmethod
+    def user_login(cls, user_name, password):
+        """
+        user_login checks whether username and password are correct
+        """
+        for user in cls.user_list:
+            if user.user_name == user_name and user.password == password:
+                return True
