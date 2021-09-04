@@ -3,6 +3,8 @@ class User:
     Class to generate new user instance
     """
 
+    user_list = []
+
     def __init__(self, first_name, sur_name, email, password):
 
         """
@@ -18,3 +20,9 @@ class User:
         self.sur_name = sur_name
         self.email = email
         self.password = password
+
+    def save_user(self):
+        """
+        save_user saves User objects into user_list
+        """
+        User.user_list.append(self)
