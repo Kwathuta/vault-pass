@@ -20,3 +20,9 @@ def save_user(user):
     Function takes in the user returned above and saves it using the save_user method from the User class
     """
     User.save_user(user)
+
+
+def new_credentials(site_name, user_name, password):
+    """ """
+    new_credentials = Credentials(site_name, user_name, password)
+    return new_credentials
