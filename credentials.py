@@ -29,3 +29,16 @@ class Credentials:
         delete_credentials removes existing instances from credentials_list array
         """
         Credentials.credentials_list.remove(self)
+
+    @classmethod
+    def find_by_site_name(cls, site_name):
+        """
+        This method takes in the site_name and returns the credentials that match the site_name
+        Args:
+            site_name: site name to search for
+        Returns:
+            login credentials of the website
+        """
+        for credential in cls.credentials_list:
+            if credential.site_name == site_name:
+                return credential
