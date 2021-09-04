@@ -23,3 +23,9 @@ class Credentials:
         save_credentials saves new instances to credentials_list array
         """
         Credentials.credentials_list.append(self)
+
+    def delete_credentials(self):
+        """
+        delete_credentials removes existing instances from credentials_list array
+        """
+        Credentials.credentials_list.remove(self)
