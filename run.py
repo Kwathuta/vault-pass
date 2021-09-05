@@ -8,6 +8,8 @@ def new_user(first_name, sur_name, user_name, email, password):
     Args:
     first_name: user's first name
     sur_name: user's surname
+    user_name: user name to login
+    email: email to login
     password: user's new password
     Returns: new_user
     """
@@ -47,3 +49,40 @@ def list_credentials(user):
     Function calling the list_credentials method in Credntials to list credentials per user
     """
     return Credentials.list_credentials(user)
+
+
+def run():
+    print("*" * 100)
+    print("WELCOME TO VAULT PASS")
+    print("*" * 100)
+    while True:
+        print(" ")
+        print("-" * 100)
+        print(
+            "Use the options below to navigate: \n 1 ==> Create an account \n 2 ==> Log In \n 3 ==> Exit"
+        )
+        choice = str(input("Enter option: "))
+        if choice == 1:
+            print("*" * 100)
+            print("-" * 100)
+            print(" ")
+            print("Account Creation")
+            print(" ")
+            first_name = input("Enter your first name ==> ").strip()
+            sur_name = input("Enter your surname ==> ").strip()
+            user_name = input("Create your username ==> ").strip()
+            email = input("Enter your email ==> ").strip()
+            password = input("Enter your new master password ==> ").strip()
+            save_user(new_user(first_name, sur_name, user_name, email, password))
+            print(" ")
+            print(
+                f"Congratulations! A new account has been created with the credentials below: \n First Name: {first_name} \n Surname: {sur_name} \n Username: {user_name} \n Email: {email} \n Password: {password} \n Please note: The password above is your master password. Do not disclose it to anyone. It is also the ONLY password you have to remember"
+            )
+        elif choice == 2:
+            print("*" * 100)
+            print("-" * 100)
+            print(" ")
+            print("Log Into Your Account")
+            print(" ")
+            user_name = input("Enter your username ==> ").strip()
+            password = str(input("Enter your master password ==> "))
