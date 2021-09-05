@@ -1,4 +1,5 @@
 from user_login import User
+import random, string
 
 
 class Credentials:
@@ -71,3 +72,11 @@ class Credentials:
             if user.user_name == user_name and user.password == password:
                 confirmed_user = user.user_name
             return confirmed_user
+
+    def password_buidler(size=8, char=string.ascii_uppercase+string.ascii_lowercase+string.digits):
+	    '''
+		Method to build a password for users
+		'''
+	    password =''.join(random.choice(char) 
+        for _ in range(size))
+            return password

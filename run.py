@@ -24,6 +24,14 @@ def save_user(user):
     User.save_user(user)
 
 
+def check_user(user_name, password):
+    """
+    Function to see if user exists in user_list
+    """
+    check_user = Credentials.confirm_user(user_name, password)
+    return check_user
+
+
 def new_credentials(site_name, user_name, password):
     """
     Function using the Credentials class to build a new_credentials
@@ -49,6 +57,14 @@ def list_credentials(user):
     Function calling the list_credentials method in Credntials to list credentials per user
     """
     return Credentials.list_credentials(user)
+
+
+def password_builder():
+    """
+    Function calling the password builder from Credentials class
+    """
+    password = Credentials.password_buidler()
+    return password
 
 
 def run():
@@ -86,3 +102,39 @@ def run():
             print(" ")
             user_name = input("Enter your username ==> ").strip()
             password = str(input("Enter your master password ==> "))
+            username = check_user(user_name, password)
+            if username == user_name:
+                print(" ")
+                print(f"Welcome {user_name}. Select an option to continue: ")
+                print(" ")
+                while True:
+                    print("-" * 100)
+                    print(" ")
+                    print(
+                        "Pick an option: \n 1 ==> Save new credentials \n 2 ==> List saved credentials \n 3 ==> Return to main menu"
+                    )
+                    option = input("Enter an option: ").strip()
+                    print(" ")
+                    if option == 1:
+                        print(" ")
+                        print("Enter new credentials:")
+                        site_name = input(r"Enter the website's name ==> ").strip()
+                        user_name = input(r"Enter the website's account name ==> ")
+                        while True:
+                            print(" ")
+                            print(
+                                "Do you wish to generate a password or create one? \n 1 ==> Generete for me \n 2 ==> I'll create mine \n 3 ==> Return to previous menu"
+                            )
+                            choice = input("Enter your option: ")
+                            print("=" * 100)
+                            if choice == 2:
+                                print(" ")
+                                password = input(
+                                    "Enter your website's password: "
+                                ).strip()
+                                break
+                            elif choice == 1:
+                                password = password_builder()
+                                break
+                            elif choice == 3:
+                                break
