@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from user_login import User
 from credentials import Credentials
 
@@ -68,19 +69,20 @@ def password_builder():
 
 
 def run():
-    print("*" * 100)
+    print(" ")
+    print("*" * 80)
     print("WELCOME TO VAULT PASS")
-    print("*" * 100)
+    print("*" * 80)
     while True:
         print(" ")
-        print("-" * 100)
+        print("=" * 80)
+        print(" ")
         print(
             "Use the options below to navigate: \n 1 ==> Create an account \n 2 ==> Log In \n 3 ==> Exit"
         )
         choice = str(input("Enter option: "))
-        if choice == 1:
-            print("*" * 100)
-            print("-" * 100)
+        if choice == "1":
+            print("=" * 80)
             print(" ")
             print("Account Creation")
             print(" ")
@@ -92,11 +94,14 @@ def run():
             save_user(new_user(first_name, sur_name, user_name, email, password))
             print(" ")
             print(
-                f"Congratulations! A new account has been created with the credentials below: \n First Name: {first_name} \n Surname: {sur_name} \n Username: {user_name} \n Email: {email} \n Password: {password} \n Please note: The password above is your master password. Do not disclose it to anyone. It is also the ONLY password you have to remember"
+                f"Congratulations! A new account has been created with the credentials below: \n First Name: {first_name} \n Surname: {sur_name} \n Username: {user_name} \n Email: {email} \n Password: {password}"
             )
-        elif choice == 2:
-            print("*" * 100)
-            print("-" * 100)
+            print(" ")
+            print(
+                "Please note: The password above is your master password. Do not disclose it to anyone. It is also the ONLY password you have to remember"
+            )
+        elif choice == "2":
+            print("=" * 80)
             print(" ")
             print("Log Into Your Account")
             print(" ")
@@ -105,17 +110,17 @@ def run():
             username = check_user(user_name, password)
             if username == user_name:
                 print(" ")
-                print(f"Welcome {user_name}. Select an option to continue: ")
-                print(" ")
+                print(
+                    f"Welcome {user_name}. We are happy to have you \nSelect an option to continue: "
+                )
                 while True:
-                    print("-" * 100)
                     print(" ")
                     print(
                         "Pick an option: \n 1 ==> Save new credentials \n 2 ==> List saved credentials \n 3 ==> Return to main menu"
                     )
                     option = input("Enter an option: ").strip()
                     print(" ")
-                    if option == 1:
+                    if option == "1":
                         print(" ")
                         print("Enter new credentials:")
                         site_name = input(r"Enter the website's name ==> ").strip()
@@ -126,15 +131,53 @@ def run():
                                 "Do you wish to generate a password or create one? \n 1 ==> Generete for me \n 2 ==> I'll create mine \n 3 ==> Return to previous menu"
                             )
                             choice = input("Enter your option: ")
-                            print("=" * 100)
-                            if choice == 2:
+                            print("=" * 80)
+                            if choice == "2":
                                 print(" ")
                                 password = input(
                                     "Enter your website's password: "
                                 ).strip()
                                 break
-                            elif choice == 1:
+                            elif choice == "1":
                                 password = password_builder()
                                 break
-                            elif choice == 3:
+                            elif choice == "3":
                                 break
+                        save_credentials(
+                            new_credentials(site_name, user_name, password)
+                        )
+                        print(" ")
+                        print(
+                            f"New website information saved: \n Website: {site_name} \n Account Name: {user_name} \n Account Password: {password} "
+                        )
+                        print(" ")
+                    elif option == "2":
+                        print(" ")
+                        if list_credentials(user_name):
+                            print("Credentials:")
+                            print(" ")
+                            for credentials in list_credentials(user_name):
+                                print(
+                                    f"Website: {credentials.site_name} \n Account Name: {credentials.user_name} \n Password: {credentials.password}"
+                                )
+                            print(" ")
+                        else:
+                            print(
+                                "We can't find any saved credentials under your account. Try selcting option 1 to save credentials before listing them"
+                            )
+                            print(" ")
+                    elif option == "3":
+                        break
+            else:
+                print(" ")
+                print(
+                    "We do not have you registered. Try chhosing option 1 below to create an account before logging in"
+                )
+        elif choice == "3":
+            print(" ")
+            print("Thank you for you time. See you again soon!")
+            break
+
+
+if __name__ == "__main__":
+    run()

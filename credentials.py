@@ -73,10 +73,11 @@ class Credentials:
                 confirmed_user = user.user_name
             return confirmed_user
 
-    def password_buidler(size=8, char=string.ascii_uppercase+string.ascii_lowercase+string.digits):
-	    '''
-		Method to build a password for users
-		'''
-	    password =''.join(random.choice(char) 
-        for _ in range(size))
-            return password
+    def password_buidler(
+        size=8, char=string.ascii_uppercase + string.ascii_lowercase + string.digits
+    ):
+        """
+        Method to build a password for users
+        """
+        password = "".join(random.choice(char) for _ in range(size))
+        return password
