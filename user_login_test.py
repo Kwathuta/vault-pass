@@ -9,3 +9,25 @@ class TestUser(unittest.TestCase):
     Args:
         unittest.TestCase: TestCase class creates test cases
     """
+
+    def setUp(self):
+        """
+        Method run before each test to build a playground
+        """
+        self.new_user = User("Devin", "Belane", "Dbelane", "d@b.com", "belane")
+
+    def test_init(self):
+        """
+        test initialization to test object instantiation
+        """
+        self.assertEqual(self.new_user.first_name, "Devin")
+        self.assertEqual(self.new_user.sur_name, "Belane")
+        self.assertEqual(self.new_user.user_name, "Dbelane")
+        self.assertEqual(self.new_user.email, "d@b.com")
+        self.assertEqual(self.new_user.password, "belane")
+
+    def tearDown(self):
+        """
+        method to clean up the user
+        """
+        User.user_list = []
