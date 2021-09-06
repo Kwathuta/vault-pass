@@ -16,7 +16,7 @@ class TestUser(unittest.TestCase):
         """
         self.new_user = User("Devin", "Belane", "Dbelane", "d@b.com", "belane")
 
-    def test_init(self):
+    def test___init__(self):
         """
         test initialization to test object instantiation
         """
